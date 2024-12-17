@@ -32,9 +32,3 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbtlearn:
       +materialized: table
-      dim:
-        +materialized: table
-      src:
-        +materialized: table
-
-config-version: 2
