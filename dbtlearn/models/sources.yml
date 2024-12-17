@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: airbnb
+    schema: raw
+    tables:
+      - name: listings           # logical name for the first table.
+        identifier: raw_listings      # The actual name of the table in the database
+
+      - name: hosts
+        identifier: raw_hosts
+
+      - name: reviews
+        identifier: raw_reviews
+
+        # loaded_at_field: date
+        # freshness:                      # indicating how recently the data was updated
+        #   warn_after: {count: 1, period: hour}
+        #   error_after: {count: 24, period: hour}
+
+
+# warn_after: {count: 1, period: hour}: 
+# This rule tells dbt to warn if the reviews table has not been updated for 1 hour. 
+# If the data is more than 1 hour old, a warning will be triggered.
+
+# error_after: {count: 24, period: hour}: 
+# This rule tells dbt to error if the reviews table has not been updated for 24 hours. 
+# If the data is older than 24 hours, an error will be raised, 
+# which can help alert you to potential issues with data freshness.

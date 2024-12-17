@@ -1,0 +1,4 @@
+airflow-dbt/
+dbt-env/
+%userprofile%/
+dbtlearn/profiles.yml
