@@ -11,16 +11,16 @@ profile: 'dbtlearn'
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
-model-paths: ["models"]
-analysis-paths: ["analyses"]
-test-paths: ["tests"]
-seed-paths: ["seeds"]
-macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
+model-paths: ["dbtlearn/models"]
+analysis-paths: ["dbtlearn/analyses"]
+test-paths: ["dbtlearn/tests"]
+seed-paths: ["dbtlearn/seeds"]
+macro-paths: ["dbtlearn/macros"]
+snapshot-paths: ["dbtlearn/snapshots"]
 
 clean-targets:         # directories to be removed by `dbt clean`
-  - "target"
-  - "dbt_packages"
+  - "dbtlearn/target"
+  - "dbtlearn/dbt_packages"
 
 
 # Configuring models
