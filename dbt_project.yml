@@ -31,10 +31,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   dbtlearn:
-      +materialized: view
+      +materialized: table
       dim:
         +materialized: table
       src:
-        +materialized: ephemeral
+        +materialized: table
 
 config-version: 2
