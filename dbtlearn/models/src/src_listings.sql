@@ -14,6 +14,7 @@ SELECT
     host_id,
     price AS price_str,
     created_at,
-    updated_at
+    updated_at,
+    CURRENT_TIMESTAMP AS audit_datetime
 FROM
     raw_listings
