@@ -1,6 +1,8 @@
 {{
   config(
-    materialized = 'view'
+    materialized = 'incremental',
+    on_schema_change='sync_all_columns',
+    unique_key='listing_id'
     )
 }}
 
@@ -29,5 +31,11 @@ SELECT
   ) AS price,
   created_at,
   updated_at,
+  CURRENT_TIMESTAMP AS audit_datetime
+
 FROM
   src_listings
+
+{% if is_incremental() %}
+    WHERE updated_at > (SELECT MAX(updated_at) FROM {{ this }})
+{% endif %}

@@ -20,3 +20,7 @@ FROM
   LEFT JOIN 
   full_moon_dates fm
   ON (TO_DATE(r.review_date) = DATEADD(DAY, 1, fm.full_moon_date))
+
+{% if is_incremental() %}
+    WHERE r.review_date > (SELECT MAX(review_date) FROM {{ this }})
+{% endif %}

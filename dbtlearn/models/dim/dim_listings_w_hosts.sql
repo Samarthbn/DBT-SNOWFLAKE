@@ -1,3 +1,10 @@
+{{
+  config(
+    materialized = 'incremental',
+    on_schema_change='sync_all_columns'
+    )
+}}
+
 WITH
 l AS (
     SELECT
@@ -21,6 +28,6 @@ SELECT
     h.is_superhost as host_is_superhost,
     l.created_at,
     GREATEST(l.updated_at, h.updated_at) as updated_at,
-    null as null_value
+    CURRENT_TIMESTAMP AS audit_datetime
 FROM l
 LEFT JOIN h ON (h.host_id = l.host_id)

@@ -2,7 +2,7 @@
 
 {{
    config(
-       target_schema='DEV',
+       target_schema='TEST',
        unique_key='id',
        strategy='timestamp',
        updated_at='updated_at',

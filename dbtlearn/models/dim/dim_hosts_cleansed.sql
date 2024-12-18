@@ -1,6 +1,8 @@
 {{
   config(
-    materialized = 'table'
+    materialized = 'incremental',
+    on_schema_change='sync_all_columns',
+    unique_key='host_id'
     )
 }}
 
@@ -15,7 +17,10 @@ SELECT
     is_superhost,
     created_at,
     updated_at,
-    updated_at as updated_at_new
-    
+    CURRENT_TIMESTAMP AS audit_datetime    
 FROM
     src_hosts
+
+{% if is_incremental() %}
+    WHERE updated_at > (SELECT MAX(updated_at) FROM {{ this }})
+{% endif %}
