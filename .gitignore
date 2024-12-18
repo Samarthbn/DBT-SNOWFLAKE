@@ -2,3 +2,5 @@ airflow-dbt/
 dbt-env/
 %userprofile%/
 dbtlearn/profiles.yml
+logs/
+target/
